@@ -1,17 +1,17 @@
 const express = require('express');
 const app = express();
-//API_KEY=7641036-00f0de21904d2ec6d7c284636
+
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const mongoUrl = process.env.MONGOLAB_URI;
+
 const mongodb = require("mongodb");
 //const mongoose = require('mongoose');
 const MongoClient = mongodb.MongoClient;
-//const key = process.env.API_KEY;
-const key = "7641036-00f0de21904d2ec6d7c284636";
+const mongoUrl = process.env.MONGOLAB_URI;
+const key = process.env.API_KEY;
 const searchModel = require("./searchModel.js");
 
-const searchImages = require('pixabay-api');
+const { searchImages } = require('pixabay-api').searchImages;
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -38,14 +38,13 @@ app.get("/api/imagesearch/:keywords*", function (request, response, next) {
         throw err;
     } else {
       console.log('Inserted...');
-      response.json(data);
+      
     }
     });
   });
-  // create URL for pixabay API with params from user
-  //var URL = "https://pixabay.com/api/?key="+key+"&q="+encodeURIComponent(keywords);
-  searchImages(key, 'puppy').then((r) => console.log(r));
   
+  searchImages(key, 'puppy').then((r) => console.log(r));
+  response.json(data);
   
 });
 
