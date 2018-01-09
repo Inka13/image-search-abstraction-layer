@@ -3,20 +3,27 @@ const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoUrl = process.env.MONGOLAB_URI;
-const mongodb = ("mongodb");
+const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
 const key = process.env.API_KEY;
 const searchModel = require("./searchModel.js");
 
 app.use(bodyParser.json());
 app.use(cors());
-MongoDlient.connect(mongoUrl);
+MongoClient.connect(mongoUrl, (res, err) => {
+if(err) throw err;
+console.log('Connected..');
+});
 app.use(express.static('public'));
 
 
 app.get("/api/imagesearch/:keywords*", function (request, response, next) {
   var {keywords} = request.params;
   var {offset} = request.query;
+  var data = new searchModel({
+    keywords,
+    date: new Date()
+    });
   response.json({ keywords, offset});
 });
 
