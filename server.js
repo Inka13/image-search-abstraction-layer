@@ -39,6 +39,7 @@ app.get("/api/imagesearch/:keywords*", function (request, response, next) {
     if(err) response.json('No results found... Try something else!');
     let resArr = [];
     if(!offset) offset=0;
+    if(offset*10>res.hits.length) offset=0;
     // store 10 results to resArr, starting from offset position
     for(let i=+offset*10; i<(+offset*10 +10) && i<res.hits.length; i++){
       let snippet = res.hits[i].pageURL.split('').splice(23);
