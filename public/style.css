@@ -1,3 +1,4 @@
+/* styles */
 
 * {
   box-sizing: border-box;
@@ -6,72 +7,36 @@
 body {
   font-family: helvetica, arial, sans-serif;
   margin: 25px;
+  background: #efefef;
 }
-
+main {
+  width: 90%;
+  margin-left: 5%;
+}
+code {
+  padding:5px;
+  background: lightblue;
+  font-size: 1rem;
+}
+.url {
+  color: darkblue;
+}
+.res {
+  height: 100px;
+  border: 1px solid darkgrey;
+  padding: 5px;
+  font-family: serif;
+  background: white;
+}
+header {
+  text-align: center;
+}
 h1 {
   font-weight: bold;
-  color: pink;
-}
-
-.bold {
-  font-weight: bold;
-}
-
-p {
-  max-width: 600px;
-}
-
-form {
-  margin-bottom: 25px;
-  padding: 15px;
-  background-color: cyan;
-  display: inline-block;
-  width: 100%;
-  max-width: 340px;
-  border-radius: 3px;
-}
-
-input {
-  display: block;
-  margin-bottom: 10px;
-  padding: 5px;
-  width: 100%;
-  border: 1px solid lightgrey;
-  border-radius: 3px;
-  font-size: 16px;
-}
-
-button {
-  font-size: 16px;
-  border-radius: 3px;
-  background-color: lightgrey;
-  border: 1px solid grey;
-  box-shadow: 2px 2px teal;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: yellow;
-}
-
-button:active {
-  box-shadow: none;
+  color: darkblue;
 }
 
 li {
   margin-bottom: 5px;
-}
-
-footer {
-  margin-top: 50px;
-  padding-top: 25px;
-  border-top: 1px solid lightgrey;
-}
-
-footer > a {
-  color: #BBBBBB;
-}
-
-.nicejob {
-  text-decoration: line-through;
+  padding: 5px;
 }
