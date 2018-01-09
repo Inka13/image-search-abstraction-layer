@@ -40,13 +40,13 @@ app.get("/api/imagesearch/:keywords*", function (request, response, next) {
     let resArr = [];
     if(!offset) offset=0;
     // store 10 results to resArr, starting from offset position
-    for(let i=+offset; i<(+offset +10) && i<res.hits.length; i++){
+    for(let i=+offset*10; i<(+offset*10 +10) && i<res.hits.length; i++){
       let snippet = res.hits[i].pageURL.split('').splice(23);
       snippet = snippet.slice(0,snippet.length-9).join('');
       resArr.push({
         url: res.hits[i].webformatURL,
         thumbnail: res.hits[i].previewURL,
-        snippet
+        altText: snippet
       })
     }
     response.json(resArr);
