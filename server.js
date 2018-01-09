@@ -44,8 +44,8 @@ app.get("/api/imagesearch/:keywords*", function (request, response, next) {
   });
   
   pixabay.searchImages(key, keywords, {per_page: 3, page: 1}).then((r) => {
-    r = JSON.parse(r);
-    response.json(r[0]);
+    //r = JSON.parse(r);
+    response.json(r);
   });
   
   
