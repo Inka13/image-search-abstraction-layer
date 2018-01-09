@@ -59,22 +59,23 @@ app.get("/api/latest/imagesearch/", function (request, response, next) {
       throw err;
     }
     
-    db.collection('search').find().sort({ "_id": -1 }, (err, data) => {
+    db.collection('search').find({}, (err, data) => {
       if(err) {
         console.log('Unable to search database...');
         throw err;
       } 
-      let dataArr = []; 
+      data.sort({}, (err, data) => {
+        let dataArr = []; 
         data.forEach(search => {
-         dataArr.push(search);
-        },() => {
-          response.send(dataArr);
-          db.close();
+          dataArr.push(search);
+          },() => {
+            response.send(dataArr);
+            db.close();
         });
-    }); 
-  });
+      }); 
+    });
+ });
 });
-
 app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
