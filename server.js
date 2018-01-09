@@ -1,8 +1,13 @@
 
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const mongoose = ("mongoose");
+const key = process.env.API_KEY;
 
-/
+app.use(bodyParser.json());
+app.use(cors());
 app.use(express.static('public'));
 
 
@@ -11,12 +16,12 @@ app.get("/", function (request, response) {
 });
 
 app.get("/dreams", function (request, response) {
-  response.send(dreams);
+  response.send(request);
 });
 
 // could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
 app.post("/dreams", function (request, response) {
-  dreams.push(request.query.dream);
+  
   response.sendStatus(200);
 });
 

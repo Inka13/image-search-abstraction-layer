@@ -12,9 +12,9 @@
   },
   "dependencies": {
     "express": "^4.16.2",
-    "cors": "",
-    "mongoose":"",
-    "body-parser":""
+    "cors": "*",
+    "mongoose":"*",
+    "body-parser":"*"
   },
   "engines": {
     "node": "8.x"
