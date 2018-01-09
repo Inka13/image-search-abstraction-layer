@@ -1,15 +1,16 @@
-
 const express = require('express');
 const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const mongoose = ("mongoose");
+const mongoUrl = process.env.MONGOLAB_URI;
+const mongodb = ("mongodb");
+const MongoClient = mongodb.MongoClient;
 const key = process.env.API_KEY;
 const searchModel = require("./searchModel.js");
 
 app.use(bodyParser.json());
 app.use(cors());
-mongoose.connect(process.env.MONGODB_URI);
+MongoDlient.connect(mongoUrl);
 app.use(express.static('public'));
 
 
