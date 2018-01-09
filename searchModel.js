@@ -1,4 +1,4 @@
-const mongoose = ("mongoose");
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const searchSchema = new Schema({
@@ -9,5 +9,5 @@ const searchSchema = new Schema({
   timestamps: true
 });
 
-const searchModel = mongoose.model('search', searchSchema);
-module.exports = searchModel;
+const Model = mongoose.model('search', searchSchema);
+module.exports = Model;
