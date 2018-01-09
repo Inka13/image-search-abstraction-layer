@@ -11,7 +11,7 @@ const mongoUrl = process.env.MONGOLAB_URI;
 const key = process.env.API_KEY;
 const searchModel = require("./searchModel.js");
 
-const { searchImages } = require('pixabay-api').searchImages;
+const pixabay = require('pixabay-api');
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -32,7 +32,7 @@ app.get("/api/imagesearch/:keywords*", function (request, response, next) {
       console.log('Unable to connect to database...');
       throw err;
     } else console.log('Connected...');
-    db.collection('search').insert(data, (err, res) => {
+    /*db.collection('search').insert(data, (err, res) => {
       if(err) {
         console.log('Unable to insert to database...');
         throw err;
@@ -40,11 +40,11 @@ app.get("/api/imagesearch/:keywords*", function (request, response, next) {
       console.log('Inserted...');
       
     }
-    });
+    }); */
   });
   
-  searchImages(key, 'puppy').then((r) => console.log(r));
-  response.json(data);
+  pixabay.searchImages(key, keywords).then((r) => response.json(r));
+  
   
 });
 
