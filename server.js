@@ -50,17 +50,18 @@ app.get("/api/imagesearch/:keywords*", function (request, response, next) {
     response.json(resArr);
   });
 });
-app.get("/api/latest/imagesearch", function (request, response, next) {
+app.get("/api/latest/imagesearch/", function (request, response, next) {
   MongoClient.connect(mongoUrl, function (err, db) {
     if(err) {
       console.log('Unable to connect to database...');
       throw err;
     }
-    db.collection('search').find().sort({date}).limit(10, (err, res) => {
+    db.collection('search').find().sort({date: {$date: 1}}, (err, res) => {
       if(err) {
         console.log('Unable to search database...');
         throw err;
       }
+      response.json(res);
     }); 
   });
 });
