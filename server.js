@@ -36,14 +36,22 @@ app.get("/api/imagesearch/:keywords*", function (request, response, next) {
   });
   // search for images with entered keywords using pixabay-api
   pixabay.searchImages(key, keywords).then((res, err) => {
-    if(err) response.json('No results found... Try something else!');
+    if(err) throw err;
+    if(res.length===0) response.json('No results found... Try something else!');
     let resArr = [];
     if(!offset) offset=0;
     if(offset*10+10>res.hits.length) offset=0;
     // store 10 results to resArr, starting from offset position
+    let snippet;
     for(let i=+offset*10; i<(+offset*10 +10); i++){
-      let snippet = res.hits[i].pageURL.split('').splice(23);
-      snippet = snippet.slice(0,snippet.length-9).join('');
+      if(!res.hits[i].pageURL) {
+        snippet="";
+        
+      } else  {
+        snippet = res.hits[i].pageURL.split('').splice(23);
+        snippet = snippet.slice(0,snippet.length-9).join('');
+      }
+      
       resArr.push({
         url: res.hits[i].webformatURL,
         thumbnail: res.hits[i].previewURL,
