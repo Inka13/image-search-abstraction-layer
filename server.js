@@ -59,20 +59,13 @@ app.get("/api/latest/imagesearch/", function (request, response, next) {
       throw err;
     }
     
-    db.collection('search').find({}, (err, data) => {
-      if(err) {
-        console.log('Unable to search database...');
-        throw err;
-      } 
-      data.sort({}, (err, data) => {
-        let dataArr = []; 
-        data.forEach(search => {
-          dataArr.push(search);
-          },() => {
-            response.send(dataArr);
-            db.close();
-        });
-      }); 
+    var data = db.collection('search').find().sort({date:{$date: -1}}).limit(10);
+    let dataArr = []; 
+    data.forEach(search => {
+        dataArr.push(search);
+    },() => {
+        response.send(dataArr);
+        db.close();
     });
  });
 });
