@@ -15,7 +15,8 @@
     "cors": "*",
     "mongodb": "2.2.33",
     "mongoose":"*",
-    "body-parser":"*"
+    "body-parser":"*",
+    "jquery":"*"
   },
   "engines": {
     "node": "8.x"
