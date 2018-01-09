@@ -20,7 +20,7 @@ app.get("/api/imagesearch/:keywords*", function (request, response, next) {
     keywords,
     date: new Date()
     });
-  // insert search to db for later use of returning latest records
+  // insert search to db 'search' collection for later use of returning latest records
   MongoClient.connect(mongoUrl, function (err, db) {
     if(err) {
       console.log('Unable to connect to database...');
@@ -34,7 +34,7 @@ app.get("/api/imagesearch/:keywords*", function (request, response, next) {
       db.close();
     }); 
   });
-  // search keywords with pixabay-api
+  // search for images with entered keywords using pixabay-api
   pixabay.searchImages(key, keywords).then((res, err) => {
     if(err) response.json('No results found... Try something else!');
     let resArr = [];
@@ -52,23 +52,25 @@ app.get("/api/imagesearch/:keywords*", function (request, response, next) {
     response.json(resArr);
   });
 });
-app.get("/api/latest/imagesearch/", function (request, response, next) {
+
+app.get("/api/latest/imagesearch", function (request, response, next) {
   MongoClient.connect(mongoUrl, function (err, db) {
     if(err) {
       console.log('Unable to connect to database...');
       throw err;
     }
-    
-    var data = db.collection('search').find().sort({date:{$date: -1}}).limit(10);
+    // sort 'search' collection by date and get 10 latest searches
+    var data = db.collection('search').find().sort({$date: -1}).limit(10);
     let dataArr = []; 
     data.forEach(search => {
         dataArr.push(search);
     },() => {
-        response.send(dataArr);
+        response.json(dataArr);
         db.close();
     });
  });
 });
+
 app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
