@@ -10,7 +10,7 @@ const MongoClient = mongodb.MongoClient;
 //const key = process.env.API_KEY;
 const key = "7641036-00f0de21904d2ec6d7c284636";
 const searchModel = require("./searchModel.js");
-const { $ } = require("jquery");
+const $ = require("jquery");
 
 app.use(bodyParser.json());
 app.use(cors());

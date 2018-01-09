@@ -16,7 +16,8 @@
     "mongodb": "2.2.33",
     "mongoose":"*",
     "body-parser":"*",
-    "jquery":"*"
+    "jquery":"3.2.1",
+    "jsdom":"*"
   },
   "engines": {
     "node": "8.x"
