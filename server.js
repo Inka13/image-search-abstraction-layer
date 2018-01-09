@@ -20,6 +20,7 @@ app.use(express.static('public'));
 
 
 app.get("/api/imagesearch/:keywords*", function (request, response, next) {
+  var resArr = [];
   var {keywords} = request.params;
   var {offset} = request.query;
   var data = new searchModel({
@@ -43,9 +44,11 @@ app.get("/api/imagesearch/:keywords*", function (request, response, next) {
     }); */
   });
   
-  pixabay.searchImages(key, keywords, {per_page: 3, page: 1}).then((r) => {
-    //r = JSON.parse(r);
-    response.json(r);
+  pixabay.searchImages(key, keywords, {per_page: 3, page: 1}).then((res, err) => {
+    for(let i=0; i<10; i++){
+      
+    }
+    response.json(err);
   });
   
   
