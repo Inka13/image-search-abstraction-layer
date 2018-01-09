@@ -51,9 +51,13 @@ app.get("/api/imagesearch/:keywords*", function (request, response, next) {
     console.log(+offset +10);
     if(!offset) offset=0;
     for(let i=+offset; i<(+offset +10); i++){
-      resArr.push(res.hits[i])
+      resArr.push({
+        url: res.hits[i].pageURL,
+        preview: res.hits[i].previewURL,
+        web: res.hits[i].webformatURL
+      })
     }
-    response.send(resArr);
+    response.json(resArr);
   });
   
   
