@@ -3,9 +3,9 @@
   "//2": "https://docs.npmjs.com/files/package.json",
   "//3": "updating this file will download and update your packages",
 
-  "name": "my-glitch-app",
+  "name": "image-search",
   "version": "0.0.1",
-  "description": "What am I about?",
+  "description": "pixabay image search",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
@@ -16,7 +16,7 @@
     "mongodb": "2.2.33",
     "mongoose":"*",
     "body-parser":"*",
-    "jquery":"3.2.1",
+    "jquery":"^3.2.1",
     "jsdom":"*"
   },
   "engines": {
