@@ -24,6 +24,7 @@ app.get("/api/imagesearch/:keywords*", function (request, response, next) {
     keywords,
     date: new Date()
     });
+  // insert search to db for later use of returning latest records
   MongoClient.connect(mongoUrl, function (err, db) {
     if(err) {
       console.log('Unable to connect to database...');
@@ -33,13 +34,21 @@ app.get("/api/imagesearch/:keywords*", function (request, response, next) {
       if(err) {
         console.log('Unable to insert to database...');
         throw err;
-    } else console.log('Inserted...');
+    } else {
+      console.log('Inserted...');
+      response.json(data);
+    }
     });
   });
+  // create URL for pixabay API with params from user
+  var URL = "https://pixabay.com/api/?key="+key+"&q="+encodeURIComponent(keywords);
+  $.getJSON(URL, function(data){
+if (parseInt(data.totalHits) > 0)
+    $.each(data.hits, function(i, hit){ console.log(hit.pageURL); });
+else
+    console.log('No hits');
+});
   
-  
-  
-  response.json(data);
   
 });
 
