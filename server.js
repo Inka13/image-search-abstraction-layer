@@ -8,7 +8,7 @@ const mongodb = require("mongodb");
 //const mongoose = require('mongoose');
 const MongoClient = mongodb.MongoClient;
 //const key = process.env.API_KEY;
-const key
+const key = "7641036-00f0de21904d2ec6d7c284636";
 const searchModel = require("./searchModel.js");
 
 app.use(bodyParser.json());
@@ -26,8 +26,15 @@ app.get("/api/imagesearch/:keywords*", function (request, response, next) {
     });
   MongoClient.connect(mongoUrl, function (err, db) {
     if(err) {
-      console.log(err);
+      console.log('Unable to connect to database...');
+      throw err;
     } else console.log('Connected...');
+    db.collection('search').insert(data, (err, res) => {
+      if(err) {
+        console.log('Unable to insert to database...');
+        throw err;
+    } else console.log('Inserted...');
+    });
   });
   
   
