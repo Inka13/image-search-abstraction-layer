@@ -43,7 +43,7 @@ app.get("/api/imagesearch/:keywords*", function (request, response, next) {
     }); */
   });
   
-  pixabay.searchImages(key, keywords).then((r) => response.json(r));
+  pixabay.searchImages(key, keywords, {per_page: 203}).then((r) => response.json(r));
   
   
 });

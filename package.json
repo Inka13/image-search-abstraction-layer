@@ -16,7 +16,7 @@
     "mongodb": "2.2.33",
     "mongoose":"*",
     "body-parser":"*",
-    "pixabay-api":"1.0.4",
+    "pixabay-api":"1.0.4"
   },
   "engines": {
     "node": "8.x"
