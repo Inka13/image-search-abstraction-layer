@@ -66,7 +66,7 @@ app.get("/api/latest/imagesearch", function (request, response, next) {
       throw err;
     }
     // sort 'search' collection by date and get 10 latest searches
-    var data = db.collection('search').find().sort({$date: -1}).limit(10);
+    var data = db.collection('search').find().sort({date: -1}).limit(10);
     let dataArr = []; 
     data.forEach(search => {
         dataArr.push(search);
