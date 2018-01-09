@@ -59,7 +59,7 @@ app.get("/api/latest/imagesearch/", function (request, response, next) {
       throw err;
     }
     
-    db.collection('search').find({}, (err, data) => {
+    db.collection('search').find().sort({ "_id": -1 }, (err, data) => {
       if(err) {
         console.log('Unable to search database...');
         throw err;
