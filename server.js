@@ -11,8 +11,8 @@ const searchModel = require("./searchModel.js");
 
 app.use(bodyParser.json());
 app.use(cors());
-
 app.use(express.static('public'));
+
 
 
 app.get("/api/imagesearch/:keywords*", function (request, response, next) {
@@ -22,17 +22,18 @@ app.get("/api/imagesearch/:keywords*", function (request, response, next) {
     keywords,
     date: new Date()
     });
-  
-  mongoose.connect(mongoUrl, (res, err) => {
-    if(err) throw err;
+  MongoClient.connect(mongoUrl, function(err, db){
+    if(err) console.log(err);
     console.log('Connected..');
-    data.save((res, err) => {
+    db.collection('search').insert(data, (err, res) => {
     if(err) console.log('error inserting');
     response.json(data);
-  });
-    
+    });
   });
   
+  
+  
+  //response.json(data);
   
 });
 
