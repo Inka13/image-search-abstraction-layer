@@ -31,6 +31,7 @@ app.get("/api/imagesearch/:keywords*", function (request, response, next) {
         console.log('Unable to insert to database...');
         throw err;
       }
+      db.close();
     }); 
   });
   // search keywords with pixabay-api
@@ -56,12 +57,19 @@ app.get("/api/latest/imagesearch/", function (request, response, next) {
       console.log('Unable to connect to database...');
       throw err;
     }
-    db.collection('search').find().sort({date: {$date: 1}}, (err, res) => {
+    
+    db.collection('search').find({}, (err, data) => {
       if(err) {
         console.log('Unable to search database...');
         throw err;
+      } 
+      let dataAr=
+        data.forEach(search => {
+        
+        },() => {});
+        response.send('ok');
+        db.close();
       }
-      response.json(res);
     }); 
   });
 });
