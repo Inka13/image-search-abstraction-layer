@@ -9,4 +9,5 @@ const searchSchema = new Schema({
   timestamps: true
 });
 
-const searchModel = mongoose.model('keywords', searchSchema);
+const searchModel = mongoose.model('search', searchSchema);
+module.exports = searchModel;

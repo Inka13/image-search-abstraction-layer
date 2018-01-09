@@ -5,9 +5,11 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = ("mongoose");
 const key = process.env.API_KEY;
+const search = require("searchModel.js");
 
 app.use(bodyParser.json());
 app.use(cors());
+mongoose.connect(process.env.MONGODB_URI);
 app.use(express.static('public'));
 
 
