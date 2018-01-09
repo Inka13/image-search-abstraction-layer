@@ -22,11 +22,11 @@ code {
   color: darkblue;
 }
 .res {
-  height: 100px;
   border: 1px solid darkgrey;
   padding: 5px;
   font-family: serif;
   background: white;
+  margin-left: -10px;
 }
 header {
   text-align: center;
